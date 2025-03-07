@@ -1,0 +1,37 @@
+<app-inputs
+  [msg]="'Hello , I Am A Parent Input'"
+  [title]="title"
+  (displayCod)="onDisplayCode($event)"
+/>
+<div class="code-editor-card" *ngIf="show">
+  <div class="editor-header">
+    <div class="tabs">
+      <button
+        *ngFor="let tab of tabs"
+        (click)="setActiveTab(tab)"
+        [class.active]="activeTab === tab"
+        class="tab-button"
+      >
+        <span class="file-icon" [class]="tab"></span>
+        {{ tab.toUpperCase() }}
+      </button>
+    </div>
+    <button
+      class="copy-button"
+      (click)="copyCode(activeTab === 'html' ? htmlCode : tsCode)"
+    >
+      <i class="fas fa-copy"></i>
+    </button>
+  </div>
+
+  <div class="editor-content">
+    <div class="line-numbers-container" [ngSwitch]="activeTab">
+      <pre
+        *ngSwitchCase="'html'"
+      ><code [class]="'language-markup line-numbers'">{{htmlCode}}</code></pre>
+      <pre
+        *ngSwitchCase="'ts'"
+      ><code [class]="'language-typescript line-numbers'">{{tsCode}}</code></pre>
+    </div>
+  </div>
+</div>

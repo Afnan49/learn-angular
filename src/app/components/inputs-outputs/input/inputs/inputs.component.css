@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card {
+  margin: 30px 0;
+  padding: 30px 50px;
+  background-color: #fecdd3;
+  color: #4c0519;
+  border-left: 5px solid #e11d48;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 12px;
+}
+.code {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid #fda4af;
+  padding: 10px 8px;
+  background-color: #9f1239;
+  border-radius: 50%;
+  cursor: pointer;
+}

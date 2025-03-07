@@ -1,0 +1,139 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.code-editor-card {
+  background-color: #1e1e1e;
+  border-radius: 6px;
+  margin: 20px;
+  font-family: "Consolas", "Monaco", monospace;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 600px;
+}
+
+.editor-header {
+  position: relative;
+  background-color: #252526;
+  padding: 8px;
+  border-bottom: 1px solid #333;
+}
+
+.tabs {
+  display: flex;
+  gap: 2px;
+}
+
+.tab-button {
+  background: #2d2d2d;
+  border: none;
+  color: #969696;
+  padding: 8px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 4px 4px 0 0;
+  font-size: 12px;
+}
+
+.tab-button.active {
+  background: #1e1e1e;
+  color: #fff;
+}
+
+.file-icon {
+  width: 22px;
+  height: 16px;
+  display: inline-block;
+  background-size: contain;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.file-icon.html::before {
+  content: "< >";
+  color: #e44d26;
+}
+
+.file-icon.css::before {
+  content: "#";
+  color: #264de4;
+}
+
+.file-icon.ts::before {
+  content: "TS";
+  color: #007acc;
+}
+
+.editor-content {
+  padding: 16px;
+  position: relative;
+  height: 320px;
+  overflow: auto;
+}
+
+.line-numbers-container {
+  position: relative;
+  background: #1e1e1e;
+}
+
+pre {
+  margin: 0;
+  padding: 16px !important;
+  background: #1e1e1e !important;
+  border-radius: 4px;
+}
+
+code {
+  font-family: "Consolas", "Monaco", monospace !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+}
+
+.copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #333;
+  border: none;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.copy-button:hover {
+  opacity: 1;
+}
+
+Prism.js customization :host ::ng-deep pre[class*="language-"] {
+  background: #1e1e1e;
+  margin: 0;
+  padding: 1em;
+}
+
+:host ::ng-deep code[class*="language-"] {
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  text-shadow: none;
+}
+
+/* VS Code-like syntax colors */
+:host ::ng-deep .token.comment {
+  color: #6a9955;
+}
+:host ::ng-deep .token.string {
+  color: #ce9178;
+}
+:host ::ng-deep .token.keyword {
+  color: #569cd6;
+}
+:host ::ng-deep .token.function {
+  color: #dcdcaa;
+}
+:host ::ng-deep .token.class-name {
+  color: #4ec9b0;
+}
