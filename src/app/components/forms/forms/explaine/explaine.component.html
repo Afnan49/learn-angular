@@ -1,0 +1,92 @@
+<div class="article">
+  <h2>Template Driven Forms</h2>
+  <h4>Form Control</h4>
+  <ul class="custom-ul">
+    <li>
+      <p>
+        If we have any input like text input, which haveany properity, in this
+        case we can say that the formcontrol can have some value which can be
+        valid or no valid or disabled or enabled, we can say the input has some
+        state, which we can change by setting the new value or disabled the
+        control, angular use form control to control the input state.
+      </p>
+    </li>
+    <li>
+      <p>
+        Form control can exist standalone but if we think about some random form
+        in this case we will see it is actually a group of different form
+        controls.
+      </p>
+    </li>
+    <li>
+      <p>
+        Form controls can be grouped and there is a dedicated model which
+        describes this use case and it is called form group.
+      </p>
+    </li>
+  </ul>
+  <h4>Form group</h4>
+  <ul>
+    <li>
+      <p>
+        Groups can be nested so it means the group can contain another group,
+        the root group is representing their final form, the main responsibility
+        of form group model is the aggregating state of form controls that
+        belongs to this group, for instance the value of the form group is an
+        object that aggregates all values of the form controls.
+      </p>
+    </li>
+    <li class="code-list">
+      <pre><app-code [code]="code" /></pre>
+    </li>
+    <li>
+      <p>
+        The object containe a combination of form control and form group model.
+      </p>
+    </li>
+  </ul>
+  <h4>Form Array</h4>
+  <ul>
+    <li><p>Also grouping form controls but in array instead of object.</p></li>
+  </ul>
+  <h4>[(ngModel)]</h4>
+  <ul>
+    <li>
+      <p>
+        To use <span class="mark">[(ngModel)]</span> we have to import the forms
+        module into thr module for modules projects or in component for
+        standalone projects, forms module is respponsile exclusively for
+        template driven forms, once you import forms module you activate this
+        kind of angular form in this component, this module exports some set of
+        angular directives some of tem were automatically attached to our form.
+      </p>
+    </li>
+  </ul>
+  <h4>Steps of use</h4>
+  <ul>
+    <li>
+      <p>
+        Create the interface to story the type of the data you want to collect
+        from the form.
+      </p>
+    </li>
+    <li>
+      <p>
+        In the form component create a variable which attach with the type of
+        the interface you created.
+      </p>
+    </li>
+    <li class="code-list">
+      <pre><app-code [code]="code2" /></pre>
+    </li>
+    <li>
+      <p>
+        Bind the form model with form template by using [(ngModel)] to achive
+        the two-way data Binding for the control.
+      </p>
+    </li>
+    <li class="code-list">
+      <pre><app-code [code]="code3" /></pre>
+    </li>
+  </ul>
+</div>

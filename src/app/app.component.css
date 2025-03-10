@@ -1,1 +1,7 @@
-
+.grid {
+  display: flex;
+  gap: 40px;
+}
+.grid app-home {
+  width: 30%;
+}

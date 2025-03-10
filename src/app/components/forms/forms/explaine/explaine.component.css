@@ -1,16 +1,16 @@
 :host {
   width: 100%;
 }
-.main {
-  display: flex;
-}
-.article {
-  padding: 0 20px;
-  background-color: #f5d0fe;
-  width: 100%;
-}
 .article h2 {
   color: #4a044e;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+.article h4 {
+  background-color: #4a044e;
+  padding: 6px;
+  border-radius: 3px;
+  color: #f5d0fe;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
 }
@@ -22,8 +22,11 @@
   line-height: 30px;
   margin-bottom: 20px;
 }
+.code-list {
+  background-color: #4a044e;
+}
 .mark {
-  color: red;
+  color: red !important;
 }
 .error {
   text-decoration: underline red wavy;

@@ -7,10 +7,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   standalone: true,
 })
 export class InputsComponent {
-  @Output() displayCod = new EventEmitter();
   @Input({ required: true }) msg!: string;
   @Input({ required: true }) title!: string;
-  onDisplayCode() {
-    this.displayCod.emit();
-  }
 }

@@ -1,37 +1,36 @@
-<app-inputs
-  [msg]="'Hello , I Am A Parent Input'"
-  [title]="title"
-  (displayCod)="onDisplayCode($event)"
-/>
-<div class="code-editor-card" *ngIf="show">
-  <div class="editor-header">
-    <div class="tabs">
-      <button
-        *ngFor="let tab of tabs"
-        (click)="setActiveTab(tab)"
-        [class.active]="activeTab === tab"
-        class="tab-button"
-      >
-        <span class="file-icon" [class]="tab"></span>
-        {{ tab.toUpperCase() }}
-      </button>
-    </div>
-    <button
-      class="copy-button"
-      (click)="copyCode(activeTab === 'html' ? htmlCode : tsCode)"
-    >
-      <i class="fas fa-copy"></i>
-    </button>
+<div class="main">
+  <div class="example">
+    <app-inputs [msg]="msg" [title]="title1" />
+    <app-main-code [data]="codeData1" />
+    <app-inputs [msg]="msg" [title]="title2" />
+    <app-main-code [data]="codeData2" />
   </div>
-
-  <div class="editor-content">
-    <div class="line-numbers-container" [ngSwitch]="activeTab">
-      <pre
-        *ngSwitchCase="'html'"
-      ><code [class]="'language-markup line-numbers'">{{htmlCode}}</code></pre>
-      <pre
-        *ngSwitchCase="'ts'"
-      ><code [class]="'language-typescript line-numbers'">{{tsCode}}</code></pre>
-    </div>
+  <div class="article">
+    <h2>Input Decorator</h2>
+    <p>
+      🟣 It is expected by adding parentheses <app-code [code]="'@Input'" /> and
+      this will mark this property as settable from outside.
+    </p>
+    <p>🟣 <span class="mark">(!)</span></p>
+    <ul>
+      <li>
+        <app-code class="error" [code]="'@Input()smg:string'" /> TypeScript says
+        there is no value being set at any point in this component instead, it's
+        an uninitialized property
+      </li>
+      <li>
+        <app-code [code]="'@Input()smg!:string'" /> Exclamation mark
+        <span class="mark">(!)</span> another TypeScript feature, which tells
+        TypeScript that we know that this will definitely be set to some value.
+      </li>
+    </ul>
+    <p>
+      🟣 Angular allaws us to configuer those input values we can pass
+      aconfiguration object to this, one of this configration is
+      <span class="mark">required</span> which telling Angular that this prperty
+      must be set
+      <app-code [code]="'@Input({required:true})smg!:string'" />
+      And telling TypeScript that there definitly will be a value
+    </p>
   </div>
 </div>

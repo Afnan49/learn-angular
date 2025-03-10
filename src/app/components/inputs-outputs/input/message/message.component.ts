@@ -1,9 +1,9 @@
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, signal } from '@angular/core';
 import { InputsComponent } from '../inputs/inputs.component';
-import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 import '../../../../../prims';
-
-type TabType = 'html' | 'ts';
+import { MainCodeComponent } from '../../../../shared/main-code/main-code.component';
+import { CodeComponent } from '../../../../shared/code/code.component';
+import { Code } from '../../../../shared/main-code/code';
 declare var Prism: any;
 
 @Component({
@@ -11,30 +11,26 @@ declare var Prism: any;
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.css'],
   standalone: true,
-  imports: [InputsComponent, NgIf, NgFor, NgSwitchCase, NgSwitch],
+  imports: [InputsComponent, MainCodeComponent, CodeComponent],
 })
 export class MessageComponent implements OnInit, AfterViewChecked {
-  show: boolean = false;
-  activeTab: TabType = 'html';
-
-  tabs: TabType[] = ['html', 'ts'];
   msg = 'Hello from Message Component';
-  title = 'Input Decorator';
+  title1 = 'Input Decorator';
+  title2 = 'Input Signal';
 
-  htmlCode = `<!-- inputs.component.html -->
-<div class="card">
-  <h1 class="title">Input Component</h1>
-  <p class="para">{{msg}}</p>
-</div>
-
-<!-- message.component.html -->
+  codeData1: any = {
+    htmlCode: `<!-- inputs.component.html -->
+    <div class="card">
+      <h1 class="title">{{title}}</h1>
+      <p class="para">{{msg}}</p>
+    </div>
+    <!-- message.component.html -->
 <app-inputs
-  [msg]="'Hello , I Am A Parent Input'"
-  (displayCod)="onDisplayCode($event)"
+  [msg]="msg"
+  [title]="title"
 />
-<app-inputs [msg]="msg" />
-`;
-  tsCode = `
+`,
+    tsCode: `
 // input.component.ts
 
 import { Component, Input } from '@angular/core';
@@ -45,7 +41,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./inputs.component.css']
 })
 export class InputsComponent {
-  @Input() msg: string = '';
+  @Input({ required: true }) msg!: string = '';
+  @Input({ required: true }) title!: string = '';
 }
   
 //message.component.ts
@@ -59,8 +56,52 @@ import { Component } from '@angular/core';
 })
   export class MessageComponent{
       msg = 'Hello from Message Component';
+      title = 'Input Decorator';
   }
-`;
+`,
+  };
+  codeData2: Code = {
+    htmlCode: `<!-- inputs.component.html -->
+    <div class="card">
+      <h1 class="title">{{title()}}</h1>
+      <p class="para">{{msg()}}</p>
+    </div>
+    <!-- message.component.html -->
+<app-inputs
+  [msg]="msg"
+  [title]="title"
+/>
+`,
+    tsCode: `
+// input.component.ts
+
+import { Component, input } from '@angular/core';
+
+@Component({
+  selector: 'app-inputs',
+  templateUrl: './inputs.component.html',
+  styleUrls: ['./inputs.component.css']
+})
+export class InputsComponent {
+msg=input<string>();
+title=input<string>();
+}
+  
+//message.component.ts
+
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-message',
+  templateUrl: './message.component.html',
+  styleUrls: ['./message.component.css'],
+  standalone: true,
+})
+  export class MessageComponent{
+      msg = 'Hello from Message Component';
+      title = 'Input Decorator';
+  }
+`,
+  };
 
   ngOnInit() {
     this.highlightCode();
@@ -69,34 +110,10 @@ import { Component } from '@angular/core';
   ngAfterViewChecked() {
     this.highlightCode();
   }
-  setActiveTab(tab: TabType) {
-    this.activeTab = tab;
-    setTimeout(() => {
-      Prism.highlightAll();
-    }, 0);
-  }
 
-  copyCode(text: string) {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        // You can replace this with a more elegant notification
-        alert('Code copied to clipboard!');
-      })
-      .catch((err) => {
-        console.error('Failed to copy code:', err);
-      });
-  }
   private highlightCode() {
     if (typeof Prism !== 'undefined') {
       Prism.highlightAll();
     }
-  }
-
-  onDisplayCode($event: any) {
-    this.show = !this.show;
-    setTimeout(() => {
-      Prism.highlightAll();
-    }, 0);
   }
 }
